@@ -1,6 +1,6 @@
-declare module 'replicate' {
-  type Status = 'starting' | 'processing' | 'succeeded' | 'failed' | 'canceled';
-  type WebhookEventType = 'start' | 'output' | 'logs' | 'completed';
+declare module "replicate" {
+  type Status = "starting" | "processing" | "succeeded" | "failed" | "canceled";
+  type WebhookEventType = "start" | "output" | "logs" | "completed";
 
   interface Page<T> {
     previous?: string;
@@ -20,7 +20,7 @@ declare module 'replicate' {
     owner: string;
     name: string;
     description?: string;
-    visibility: 'public' | 'private';
+    visibility: "public" | "private";
     github_url?: string;
     paper_url?: string;
     license_url?: string;
@@ -43,12 +43,12 @@ declare module 'replicate' {
     version: string;
     input: object;
     output?: any;
-    source: 'api' | 'web';
+    source: "api" | "web";
     error?: any;
     logs?: string;
     metrics?: {
       predict_time?: number;
-    }
+    };
     webhook?: string;
     webhook_events_filter?: WebhookEventType[];
     created_at: string;
@@ -81,7 +81,7 @@ declare module 'replicate' {
       }
     ): Promise<object>;
     request(route: string, parameters: any): Promise<any>;
-    paginate<T>(endpoint: () => Promise<Page<T>>): AsyncGenerator<[ T ]>;
+    paginate<T>(endpoint: () => Promise<Page<T>>): AsyncGenerator<[T]>;
     wait(
       prediction: Prediction,
       options: {
@@ -145,8 +145,9 @@ declare module 'replicate' {
           input: object;
           webhook?: string;
           webhook_events_filter?: WebhookEventType[];
+          wait?: boolean | { interval?: number; maxAttempts?: number };
         }): Promise<Prediction>;
-      }
-    }
+      };
+    };
   }
 }
